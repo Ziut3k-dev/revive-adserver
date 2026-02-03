@@ -188,7 +188,8 @@ jobs:
           name: Test suite results
           path: '**/build/test-reports/*.xml'
           reporter: phpunit-junit
-          only-summary: true
+          list-suites: failed
+          list-tests: failed
 
       - name: Install PHP with extensions
         uses: shivammathur/setup-php@v2

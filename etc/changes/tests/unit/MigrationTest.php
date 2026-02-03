@@ -26,7 +26,7 @@ define('TMP_CONFIG_PATH', MAX_PATH . '/var/config.inc.php.tmp');
  * @package    changes
  * @subpackage TestSuite
  */
-abstract class MigrationTest extends DbTestCase
+class MigrationTest extends DbTestCase
 {
     /**
      * The MDB2 driver handle.

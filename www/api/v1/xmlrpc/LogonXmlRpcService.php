@@ -35,16 +35,6 @@ require_once MAX_PATH . '/www/api/v1/common/XmlRpcUtils.php';
 class LogonXmlRpcService extends BaseLogonService
 {
     /**
-     * The LogonXmlRpcService constructor calls the base service constructor to
-     * initialise the service.
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * The logon method sends the username and password to log on to the service
      * and returns either a session ID or an error message.
      *

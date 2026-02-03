@@ -19,7 +19,7 @@ require_once MAX_PATH . '/lib/max/Delivery/cache.php';
  * @package    OpenXCache
  * @subpackage TestSuite
  */
-abstract class DeliveryCacheUnitTestCase extends UnitTestCase
+class DeliveryCacheUnitTestCase extends UnitTestCase
 {
     /**
      * Function creates 2 zones on 1 website and 2 campaigns 2 banners each under 1 advertiser

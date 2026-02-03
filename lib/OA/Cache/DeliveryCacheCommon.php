@@ -32,11 +32,11 @@ class OA_Cache_DeliveryCacheCommon
     public function __construct()
     {
         $this->oCacheStorePlugin =
-            &OX_Component::factoryByComponentIdentifier(
+            OX_Component::factoryByComponentIdentifier(
                 $GLOBALS['_MAX']['CONF']['delivery']['cacheStorePlugin'],
             );
         // Do not use Plugin if it's not enabled
-        if ($this->oCacheStorePlugin->enabled === false) {
+        if ($this->oCacheStorePlugin && $this->oCacheStorePlugin->enabled === false) {
             $this->oCacheStorePlugin = false;
         }
     }

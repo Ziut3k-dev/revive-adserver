@@ -16,7 +16,7 @@
  * @package    OpenXAdmin
  * @subpackage TestSuite
  */
-abstract class Test_OA_Admin_MenuTestCase extends UnitTestCase
+class Test_OA_Admin_MenuTestCase extends UnitTestCase
 {
     public function setUp()
     {

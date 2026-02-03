@@ -42,7 +42,7 @@ class Plugins_TestOfPlugins_DeliveryCacheStore_oxMemcached_oxMemcached extends U
     {
         parent::__construct();
         _oxMemcached_MemcachedInit();
-        $this->oMemcached = $GLOBALS['OA_Delivery_Cache']['MemcachedObject'];
+        $this->oMemcached = $GLOBALS['OA_Delivery_Cache']['MemcachedObject'] ?? null;
     }
 
     /**

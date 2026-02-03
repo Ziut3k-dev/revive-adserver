@@ -49,8 +49,8 @@ class MDB2Connection {
 	* @param object Connection Configuration information
 	* @access private
 	*/
-	function __construct(&$config) {
-		$this->config =& $config;
+	function __construct($config) {
+		$this->config = $config;
 	}
 
 	/**
@@ -58,7 +58,7 @@ class MDB2Connection {
 	* @return object subclass of PEAR::MDB2_Common
 	* @access protected
 	*/
-	function & getConnectionId() {
+	function getConnectionId() {
 		if (!isset($this->ConnectionId)) {
 			$this->connect();
 		}

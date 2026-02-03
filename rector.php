@@ -40,6 +40,7 @@ return function (RectorConfig $rectorConfig): void {
                 __DIR__ . '/lib/OA',
                 __DIR__ . '/lib/OX',
                 __DIR__ . '/lib/RV',
+                __DIR__ . '/lib/simpletest',
                 __DIR__ . '/maintenance',
                 __DIR__ . '/plugins_repo',
                 __DIR__ . '/scripts',

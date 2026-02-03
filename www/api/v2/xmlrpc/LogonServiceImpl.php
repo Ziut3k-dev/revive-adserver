@@ -24,15 +24,6 @@ require_once MAX_PATH . '/www/api/v2/common/BaseServiceImpl.php';
 class LogonServiceImpl extends BaseServiceImpl
 {
     /**
-     * The LogonServiceImpl constructor calls the base constructor for the class.
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Login to OpenX without using the login form in the user interface and
      * receive a session ID.
      *

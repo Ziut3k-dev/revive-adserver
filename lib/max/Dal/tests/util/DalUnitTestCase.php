@@ -28,7 +28,7 @@ class DalUnitTestCase extends UnitTestCase
      *    @return boolean                    True if all tests passed.
      *    @access public
      */
-    public function run(&$reporter)
+    public function run($reporter)
     {
         $this->setUpFixture();
         $ret = parent::run($reporter);

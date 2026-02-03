@@ -43,7 +43,7 @@ define('OA_INSTALLATION_STATUS', OA_INSTALLATION_STATUS_INSTALLED);
  * @subpackage TestSuite
  * @author     Matteo Beccati <matteo.beccati@openx.org>
  */
-abstract class Test_OA_Api_XmlRpc extends UnitTestCase
+class Test_OA_Api_XmlRpc extends UnitTestCase
 {
     /**
      * @var OA_API_Xmlrpc
@@ -138,7 +138,7 @@ class Mocked_XML_RPC_Client
             // Strip init
             $file = str_replace("require_once '../../../../init.php';", '', $file);
             // Don't service now
-            $file = preg_replace('#1 +// *serviceNow#i', '0', $file);
+            $file = preg_replace('#1,? +// *serviceNow#i', '0', $file);
             // Write modified file
             $fp = fopen(MAX_PATH .'/var/cache/test_api_'.$this->service, 'w');
             fwrite($fp, $file);

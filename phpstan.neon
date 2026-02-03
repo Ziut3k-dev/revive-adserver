@@ -29,7 +29,6 @@ parameters:
             - lib/minify
             - lib/pear
             - lib/pclzip
-            - lib/simpletest
             - lib/smarty
             - lib/vendor
             - lib/wact

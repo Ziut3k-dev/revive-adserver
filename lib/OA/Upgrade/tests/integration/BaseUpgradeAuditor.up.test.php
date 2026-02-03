@@ -15,7 +15,7 @@ require_once MAX_PATH . '/lib/OA/Upgrade/BaseUpgradeAuditor.php';
 Mock::generate('OA_DB_UpgradeAuditor');
 Mock::generate('OA_UpgradeAuditor');
 
-abstract class Test_OA_BaseUpgradeAuditor extends UnitTestCase
+class Test_OA_BaseUpgradeAuditor extends UnitTestCase
 {
     public $aAuditParams = [];
 
