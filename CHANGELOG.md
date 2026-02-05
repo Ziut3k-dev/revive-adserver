@@ -7,6 +7,7 @@ All notable changes to Revive Adserver will be documented in this file.
 ### Fixes
 
 - Added missing escaping when displaying alt text as HTML title in afr.php and ac.php ([#1636](https://github.com/revive-adserver/revive-adserver/issues/1636))
+- Since 6.0.5 it was not possible to delete all the limitations for a banner or a delivery rule set ([#1640](https://github.com/revive-adserver/revive-adserver/issues/1640)) 
 
 ### Changed
 - Improved compatibility with the development version of PHP (8.6.x) ([5a67649](https://github.com/revive-adserver/revive-adserver/commit/5a67649))

@@ -57,9 +57,6 @@ $acl = MAX_AclsRemap($acl ?? []);
 /*-------------------------------------------------------*/
 
 if (!empty($action)) {
-    if (empty($acl)) {
-        $acl = [];
-    }
     $acl = MAX_AclAdjust($acl, $action);
 } elseif (!empty($submit)) {
     OA_Permission::checkSessionToken();
@@ -87,6 +84,11 @@ if (!empty($action)) {
             exit;
         }
     }
+} else {
+    $acl = Admin_DA::getChannelLimitations(['channel_id' => $channelid]);
+    // This array needs to be sorted by executionorder, this should ideally be done in SQL
+    // When we move to DataObject this should be addressed
+    ksort($acl);
 }
 
 /*-------------------------------------------------------*/
@@ -96,13 +98,6 @@ if (!empty($action)) {
 MAX_displayNavigationChannel($pageName, $aOtherChannels, $aEntities);
 
 $aChannel = Admin_DA::getChannel($channelid);
-
-if (empty($acl)) {
-    $acl = Admin_DA::getChannelLimitations(['channel_id' => $channelid]);
-    // This array needs to be sorted by executionorder, this should ideally be done in SQL
-    // When we move to DataObject this should be addressed
-    ksort($acl);
-}
 
 if (!empty($affiliateid)) {
     $aParams = ['affiliateid' => $affiliateid, 'channelid' => $channelid];

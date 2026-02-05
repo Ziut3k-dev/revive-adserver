@@ -101,6 +101,11 @@ if (!empty($action)) {
         header("Location: banner-acl.php?clientid={$clientid}&campaignid={$campaignid}&bannerid={$bannerid}");
         exit;
     }
+} else {
+    $acl = Admin_DA::getDeliveryLimitations(['ad_id' => $bannerid]);
+    // This array needs to be sorted by executionorder, this should ideally be done in SQL
+    // When we move to DataObject this should be addressed
+    ksort($acl);
 }
 
 /*-------------------------------------------------------*/
@@ -125,13 +130,6 @@ MAX_displayNavigationBanner($pageName, $aOtherCampaigns, $aOtherBanners, $aEntit
 /*-------------------------------------------------------*/
 
 $aBanner = MAX_cacheGetAd($bannerid, false);
-
-if (empty($acl)) {
-    $acl = Admin_DA::getDeliveryLimitations(['ad_id' => $bannerid]);
-    // This array needs to be sorted by executionorder, this should ideally be done in SQL
-    // When we move to DataObject this should be addressed
-    ksort($acl);
-}
 
 $aParams = ['clientid' => $clientid, 'campaignid' => $campaignid, 'bannerid' => $bannerid];
 
