@@ -182,6 +182,7 @@ class InstallCommand extends AbstractInstallerCommand
                 'timezone' => new ConfSetting(false, 'prefsTimezone', \OX_Admin_Timezones::getTimezone()),
             ],
             'paths' => [
+                'requireSSL' => new ConfSetting(true, 'requireSSL'),
                 'admin' => new ConfSetting(true, 'webpathAdmin'),
                 'delivery' => new ConfSetting(true, ['webpathDelivery', 'webpathDeliverySSL']),
                 'images' => new ConfSetting(true, ['webpathImages', 'webpathImagesSSL']),

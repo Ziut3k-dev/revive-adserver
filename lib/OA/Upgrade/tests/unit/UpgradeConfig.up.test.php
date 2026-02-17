@@ -71,8 +71,9 @@ class Test_OA_Upgrade_Config extends UnitTestCase
         $aConfig['webpath']['admin'] = $hostAdmin;
         $aConfig['webpath']['delivery'] = $hostDelivery;
         $aConfig['webpath']['deliverySSL'] = $hostDelivery;
+        $aConfig['openads']['requireSSL'] = '';
 
-        $oConf->setupConfigWebPath($aConfig['webpath']);
+        $oConf->setupConfigWebPath($aConfig);
 
         $this->assertTrue($oConf->writeConfig(), 'Error writing config file');
         $this->assertTrue(file_exists($fileReal), 'Real config file does not exist');
@@ -86,6 +87,7 @@ class Test_OA_Upgrade_Config extends UnitTestCase
         $this->assertEqual($aRealConfig['webpath']['admin'], $hostAdmin);
         $this->assertEqual($aRealConfig['webpath']['delivery'], $hostDelivery);
         $this->assertEqual($aRealConfig['webpath']['deliverySSL'], $hostDelivery);
+        $this->assertFalse($aRealConfig['openads']['requireSSL']);
 
         $aFakeConfig = @parse_ini_file($fileFake, true);
         $this->assertTrue(isset($aFakeConfig['realConfig']));
@@ -120,8 +122,9 @@ class Test_OA_Upgrade_Config extends UnitTestCase
         $aConfig['webpath']['admin'] = $hostDelivery;
         $aConfig['webpath']['delivery'] = $hostAdmin;
         $aConfig['webpath']['deliverySSL'] = $hostAdmin;
+        $aConfig['openads']['requireSSL'] = '1';
 
-        $oConf->setupConfigWebPath($aConfig['webpath']);
+        $oConf->setupConfigWebPath($aConfig);
 
         $this->assertTrue($oConf->writeConfig(), 'Error writing config file');
         $this->assertTrue(file_exists($fileReal), 'Real config file does not exist');
@@ -135,6 +138,7 @@ class Test_OA_Upgrade_Config extends UnitTestCase
         $this->assertEqual($aRealConfig['webpath']['admin'], $hostDelivery);
         $this->assertEqual($aRealConfig['webpath']['delivery'], $hostAdmin);
         $this->assertEqual($aRealConfig['webpath']['deliverySSL'], $hostAdmin);
+        $this->assertTrue($aRealConfig['openads']['requireSSL']);
 
         $aFakeConfig = @parse_ini_file($fileFake, true);
         $this->assertTrue(isset($aFakeConfig['realConfig']));
@@ -261,8 +265,19 @@ class Test_OA_Upgrade_Config extends UnitTestCase
 
     public function test_getInitialConfig()
     {
+        $_SERVER['HTTPS'] = 'on';
+
         $oUpConfig = new OA_Upgrade_Config();
         $oUpConfig->getInitialConfig();
+
+        $this->assertTrue($oUpConfig->oSettings->aConf['openads']['requireSSL']);
+
+        unset($_SERVER['HTTPS']);
+
+        $oUpConfig = new OA_Upgrade_Config();
+        $oUpConfig->getInitialConfig();
+
+        $this->assertFalse($oUpConfig->oSettings->aConf['openads']['requireSSL']);
     }
 
     /**

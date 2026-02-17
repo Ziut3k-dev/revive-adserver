@@ -125,6 +125,8 @@ class OA_Upgrade_Config
             $this->setValue('webpath', 'deliverySSL', OX_getHostName());
             $this->setValue('webpath', 'imagesSSL', OX_getHostName());
         }
+
+        $this->setValue('openads', 'requireSSL', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on');
     }
 
     /**
@@ -204,7 +206,9 @@ class OA_Upgrade_Config
 
     public function setupConfigWebpath($aConfig)
     {
-        foreach ($aConfig as $k => $v) {
+        $this->setValue('openads', 'requireSSL', $aConfig['openads']['requireSSL']);
+
+        foreach ($aConfig['webpath'] as $k => $v) {
             $this->setValue('webpath', $k, preg_replace('#/$#', '', $v));
         }
     }

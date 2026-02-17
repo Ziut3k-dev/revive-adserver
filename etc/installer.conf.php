@@ -25,6 +25,7 @@ language  = en
 timezone  = ; empty to autodetect
 
 [paths]
+requireSSL = 1 ; Force SSL for admin interface
 admin      = localhost/www/admin
 delivery   = localhost/www/delivery
 images     = localhost/www/images

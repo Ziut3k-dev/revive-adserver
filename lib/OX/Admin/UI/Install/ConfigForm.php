@@ -101,6 +101,11 @@ class OX_Admin_UI_Install_ConfigForm extends OX_Admin_UI_Install_BaseForm
         //build form
         $this->addElement('header', 'h_paths', $GLOBALS['strConfigurationSettings']);
         $this->addElement(
+            'advcheckbox',
+            'requireSSL',
+            $GLOBALS['requireSSL'],
+        );
+        $this->addElement(
             'text',
             'webpathAdmin',
             $GLOBALS['strWebPathSimple'],
@@ -183,6 +188,7 @@ class OX_Admin_UI_Install_ConfigForm extends OX_Admin_UI_Install_BaseForm
     {
         $aFields = $this->exportValues();
         $aConfig = [];
+        $aConfig['openads']['requireSSL'] = $aFields['requireSSL'];
         $aConfig['webpath']['admin'] = $aFields['webpathAdmin'];
         $aConfig['webpath']['delivery'] = $aFields['webpathDelivery'];
         $aConfig['webpath']['images'] = $aFields['webpathImages'];
@@ -212,12 +218,11 @@ class OX_Admin_UI_Install_ConfigForm extends OX_Admin_UI_Install_BaseForm
      */
     public function populateForm($aConfig)
     {
-        $aFields = [];
-
         $aPathConfig = $aConfig['config'];
 
         //config part
         $aFields = [];
+        $aFields['requireSSL'] = $aPathConfig['openads']['requireSSL'];
         $aFields['webpathAdmin'] = $aPathConfig['webpath']['admin'];
         $aFields['webpathDelivery'] = $aPathConfig['webpath']['delivery'];
         $aFields['webpathImages'] = $aPathConfig['webpath']['images'];
